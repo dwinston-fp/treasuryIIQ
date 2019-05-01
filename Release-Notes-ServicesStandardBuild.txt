@@ -1,0 +1,42 @@
+Release: SSB v3 GA
+Released: 28 February 2017
+
+****************************************
+OVERVIEW OF RELEASE
+****************************************
+
+Version 3 of the Services Standard Build (SSB) contains several new 
+features and fixes.
+
+****************************************
+NEW TO THIS RELEASE:
+****************************************
+
+ - A new 'document' target automates creation of documentation of common IdentityIQ
+   object types, providing a Javadoc-style collection of HTML documents.  See the User
+   Guide for more information.
+ - Ability to detect loggers defined in BeanShell code and custom Java source code and
+   add them as lines in log4j.properties (but commented out), avoiding the need to look
+   up the name of the logger in the code when debugging.  See the User Guide for more
+   information.
+ - Updates to SSB User Guide
+
+
+Bugs fixed since SSB v2 GA
+
+ - Build was failing if there were two tokens on the same line
+ - Multi-line tokens were not working
+ - Token validation failed when directory path had spaces
+ - Build was failing if target.properties was empty
+ - Missing tokens write back to target.properties was removing token on first line
+ - Importdynamic console_user and console_pass must now be lower case as previously 
+   documented
+ - Modified names of example custom SSB scripts so that they do not execute by default
+ - SSB now correctly handles environment-specific build.properties files
+ - Files under the SSB config folder with uppercase .XML were being excluded from token 
+   replacement and the sp.init-custom.xml file
+ - The SSB importdynamic target was not ignoring files in the ignorefiles.properties
+
+
+The SSB is part of the Services Standard Deployment (SSD).  For more details please visit:
+https://community.sailpoint.com/community/identityiq/sailpoint-toolkits/standard-services-deployment

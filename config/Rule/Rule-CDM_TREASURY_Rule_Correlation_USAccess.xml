@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="CDM-Treasury-Rule-Correlation-USAccess" type="Correlation">
+  <Description>
+  Identity Correlation Rules are used to find identities to which new accounts can be attached.
+
+  A correlation rule must return a Map with one of the specified Return arguments.
+  </Description>
+  <Signature returnType="Map">
+    <Inputs>
+      <Argument name="log">
+        <Description>
+          The log object associated with the SailPointContext.
+        </Description>
+      </Argument>
+      <Argument name="context">
+        <Description>
+          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+        </Description>
+      </Argument>
+      <Argument name="environment" type="Map">
+        <Description>
+          Arguments passed to the aggregation task.
+        </Description>
+      </Argument>
+      <Argument name="application">
+        <Description>
+          Application being aggregated.
+        </Description>
+      </Argument>
+      <Argument name="account">
+        <Description>
+          A sailpoint.object.ResourceObject returned from the
+          collector.
+        </Description>
+      </Argument>
+      <Argument name="link">
+        <Description>
+          Existing link to this account.
+        </Description>
+      </Argument>
+    </Inputs>
+    <Returns>
+      <Argument name="identityName">
+        <Description>
+          The name of an Identity object.
+        </Description>
+      </Argument>
+      <Argument name="identity">
+        <Description>
+          A fully resolved Identity object if the rule wants
+          to do its own queries to locate the identity.
+        </Description>
+      </Argument>
+      <Argument name="identityAttributeName">
+        <Description>
+          The name of the extended attribute that can be used
+          to locate an existing identity.
+        </Description>
+      </Argument>
+      <Argument name="identityAttributeValue">
+        <Description>
+          The value of the named extended attribute that can be used
+          to locate an existing identity. This attribute is used
+          together with the identityAttributeName argument.
+        </Description>
+      </Argument>
+    </Returns>
+  </Signature>
+  <Source>
+import sailpoint.object.Application;
+import sailpoint.object.Identity;
+import sailpoint.connector.AbstractConnector;
+import sailpoint.object.ResourceObject;
+import sailpoint.tools.GeneralException;
+import sailpoint.object.Link;
+import java.util.Map;
+import java.util.HashMap;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import gov.dhs.cdm.sailpoint.util.SearchUtil;
+import gov.treasury.cdm.constants.TreasuryCustomGlobalStringConst;
+Map returnMap = new HashMap();
+Log log = LogFactory.getLog("rule.Correlation-USAccess");
+log.trace("Entering USAccess correlation rule");
+if (account != null) {
+  try {
+    String personID =
+        context.encrypt((String) account
+            .getAttribute(TreasuryCustomGlobalStringConst.USACCESS_PERSON_ATTRIBUTE));
+    log.debug("Attempting to correlate on personID: " + personID);
+    if (personID != null) {
+      Identity identity =
+          SearchUtil.getCorrelatedIdentityGivenAttribute(context,
+              TreasuryCustomGlobalStringConst.IDENTITY_ATTRIBUTE_PERSONID, personID);
+      if (identity != null) {
+        log.debug("identity: " + identity.getDisplayName());
+        returnMap.put("identity", identity);
+      } else {
+        log.warn("unable to retrieve identity by personID: " + personID);
+      }
+    } else {
+      log.warn("personID is null.");
+    }
+  } catch (Exception e) {
+    log.error("Cannot correlate on personID.", e);
+  }
+} else {
+  log.warn("account is null.");
+}
+log.trace("Exiting USAccess correlation rule - Returning: " + returnMap.toString());
+return returnMap;</Source>
+</Rule>

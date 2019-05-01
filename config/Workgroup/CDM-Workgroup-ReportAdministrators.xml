@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Identity PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Identity name="Report Administrators" workgroup="true">
+    <Attributes>
+        <Map>
+            <entry key="displayName" value="Report Administrators"/>
+        </Map>
+    </Attributes>
+    <Capabilities>
+        <Reference class="sailpoint.object.Capability" name="ComplianceOfficer"/>
+    </Capabilities>
+    <Owner>
+        <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Preferences>
+        <Map>
+            <entry key="workgroupNoticationOption">
+                <value>
+                    <WorkgroupNotifationOption>Both</WorkgroupNotifationOption>
+                </value>
+            </entry>
+        </Map>
+    </Preferences>
+</Identity>

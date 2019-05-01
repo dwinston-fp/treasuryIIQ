@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="CDM Treasury Component IdentityAttribute Rule" type="IdentityAttribute">
+  <Description>
+Identity attribute rules are used when the value is not simply a copy of an application account attribute value.  A transformation may be necessary on the account attribute, or several account attributes may need to be combined to produce the identity attribute.
+
+This rule can be called in two ways: as a global mapping rule and an application mapping rule.  A global mapping rule is called whenever the identity is refreshed.  The rule can look at any account attributes.  An application mapping rule is called only when the identity contains an account link for that application, this link is passed in the "link" argument which is not passed in global mapping rules.
+  </Description>
+  <Signature returnType="String">
+    <Inputs>
+      <Argument name="log">
+        <Description>
+          The log object associated with the SailPointContext.
+        </Description>
+      </Argument>
+      <Argument name="context">
+        <Description>
+          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+        </Description>
+      </Argument>
+      <Argument name="environment" type="Map">
+        <Description>
+           Arguments passed to the aggregation or refresh task.
+        </Description>
+      </Argument>
+      <Argument name="identity">
+        <Description>
+           The Identity object that represents the user
+           that is being aggregated.
+        </Description>
+      </Argument>
+      <Argument name="attributeDefinition">
+        <Description>
+           The AttributeDefinition object for this attribute.
+        </Description>
+      </Argument>
+      <Argument name="link">
+        <Description>
+           The Link object from the Identity, if this is an application
+           mapping rule.  For global mapping rules this will be void.
+        </Description>
+      </Argument>
+      <Argument name="attributeSource">
+        <Description>
+          The AttributeSource object.
+        </Description>
+      </Argument>
+      <Argument name="oldValue">
+        <Description>
+          The original value of the application account attribute.
+        </Description>
+      </Argument>
+    </Inputs>
+    <Returns>
+      <Argument name="attributeValue">
+        <Description>
+          The value of the attribute that should be populated.
+          The rule should return this value.
+        </Description>
+      </Argument>
+    </Returns>
+  </Signature>
+  <Source>
+import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import gov.treasury.cdm.constants.TreasuryCustomGlobalStringConst;
+import sailpoint.object.Custom;
+import sailpoint.object.Identity;
+import sailpoint.object.Link;
+import sailpoint.tools.Util;
+Log log = LogFactory.getLog("rule.IdentityAttribute-Component");
+log.trace("Entering component identity attribute rule");
+String finalComponent = null;
+if (link != null) {
+  String attrName = null;
+  if (link.getApplicationName().equals(TreasuryCustomGlobalStringConst.HRCONNECT_APPLICATION_NAME)) {
+    attrName = TreasuryCustomGlobalStringConst.HRCONNECT_COMPONENT_ATTRIBUTE;
+  } else if (link.getApplicationName().equals(
+      TreasuryCustomGlobalStringConst.USACCESS_APPLICATION_NAME)) {
+    attrName = TreasuryCustomGlobalStringConst.USACCESS_COMPONENT_ATTRIBUTE;
+  }
+  if (attrName != null) {
+    String component = (String) link.getAttribute(attrName);
+    if (Util.isNotNullOrEmpty(component)) {
+      log.debug("Component is: " + component);
+      try {
+        Custom globalConsts =
+            context.getObjectByName(Custom.class,
+                TreasuryCustomGlobalStringConst.CUSTOM_GLOBAL_OBJECT_NAME);
+        if (globalConsts != null) {
+          Map componentMap =
+              (Map) globalConsts.get(TreasuryCustomGlobalStringConst.COMPONENT_MAPPING_KEY);
+          if (componentMap != null) {
+            if (componentMap.get(component) != null) {
+              finalComponent = (String) componentMap.get(component);
+            } else {
+              log.trace("component not mapped to value");
+            }
+          } else {
+            log.warn("component map is null");
+          }
+        } else {
+          log.warn("Unable to retrieve custom global object");
+        }
+      } catch (Exception e) {
+        log.error(" An exception occured in mapping the Component " + component);
+      }
+    } else {
+      log.warn("Component is null.");
+    }
+  } else {
+    log.warn("Attribute Name is null");
+  }
+} else {
+  log.warn("Link is null.");
+}
+log.trace("Exiting component identity attribute rule - Returning: " + finalComponent);
+return finalComponent;</Source>
+</Rule>

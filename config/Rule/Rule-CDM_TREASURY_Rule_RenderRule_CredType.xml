@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="CDM-Rule-RenderRule-CredType">
+  <Source>
+import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import gov.treasury.cdm.constants.TreasuryCustomGlobalStringConst;
+import sailpoint.object.Custom;
+import sailpoint.tools.Util;
+Log log = LogFactory.getLog("rule.RenderRule-CredType");
+log.trace("Entering cred type render rule");
+String credType = null;
+if (Util.isNotNullOrEmpty(value)) {
+  log.debug("credType is: " + value);
+  try {
+    Custom globalConsts =
+        context.getObjectByName(Custom.class,
+            TreasuryCustomGlobalStringConst.CUSTOM_GLOBAL_OBJECT_NAME);
+    if (globalConsts != null) {
+      Map typeMap = (Map) globalConsts.get(TreasuryCustomGlobalStringConst.CRED_TYPE_MAPPING_KEY);
+      if (typeMap != null) {
+        if (typeMap.get(value) != null) {
+          credType = (String) typeMap.get(value);
+        } else {
+          log.trace("cred type not mapped to value");
+        }
+      } else {
+        log.warn("cred type map is null");
+      }
+    } else {
+      log.warn("Unable to retrieve custom global object");
+    }
+  } catch (Exception e) {
+    log.error(" An exception occured in mapping the credtype " + value);
+  }
+} else {
+  log.warn("cred type is null.");
+}
+log.trace("Exiting CRED type render rule - Returning: " + credType);
+return credType;</Source>
+</Rule>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application connector="sailpoint.connector.webservices.WebServicesConnector" featuresString="PROVISIONING, ENABLE, PASSWORD, AUTHENTICATE" name="CRED - USAccess" profileClass="" type="Web Services">
+  <Attributes>
+    <Map>
+      <entry key="authenticationMethod" value="No Auth"/>
+      <entry key="clientCertAuthEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="compositeDefinition"/>
+      <entry key="connectionParameters">
+        <value>
+          <List>
+            <Map>
+              <entry key="afterRule"/>
+              <entry key="beforeRule"/>
+              <entry key="body">
+                <value>
+                  <Map>
+                    <entry key="bodyFormData"/>
+                    <entry key="bodyFormat" value="raw"/>
+                    <entry key="jsonBody" value="&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:soap=&quot;http://soap.demo.org/&quot;&gt;&#10;   &lt;soapenv:Header/&gt;&#10;   &lt;soapenv:Body&gt;&#10;      &lt;soap:getAllUsers/&gt;&#10;   &lt;/soapenv:Body&gt;&#10;&lt;/soapenv:Envelope&gt;"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="contextUrl" value="pds-demo/HRConnectImpl"/>
+              <entry key="header">
+                <value>
+                  <Map>
+                    <entry key="Content-Type" value="text/xml"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="httpMethodType" value="POST"/>
+              <entry key="operationType" value="Account Aggregation"/>
+              <entry key="paginationSteps"/>
+              <entry key="pagingInitialOffset">
+                <value>
+                  <Integer>0</Integer>
+                </value>
+              </entry>
+              <entry key="pagingSize">
+                <value>
+                  <Integer>50</Integer>
+                </value>
+              </entry>
+              <entry key="resMappingObj">
+                <value>
+                  <Map>
+                    <entry key="AgencyPersonGUID" value="agencyPersonGUID"/>
+                    <entry key="CRED Description" value="PIVCardType"/>
+                    <entry key="CRED Identifier" value="cardSerialNumber"/>
+                    <entry key="CRED Status" value="chuidStatus"/>
+                    <entry key="CRED Type" value="credentialOption"/>
+                    <entry key="Cred Expiration Date" value="cardExpiryDate"/>
+                    <entry key="Cred Status Initiation Date" value="issuanceLastUpdate"/>
+                    <entry key="FullName" value="fullName"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="responseCode">
+                <value>
+                  <List>
+                    <String>200</String>
+                  </List>
+                </value>
+              </entry>
+              <entry key="rootPath" value="//ns2:getAllUsersResponse/return"/>
+              <entry key="sequenceNumberForEndpoint" value="1"/>
+              <entry key="uniqueNameForEndPoint" value="Get Users"/>
+              <entry key="xpathNamespaces">
+                <value>
+                  <Map>
+                    <entry key="ns2" value="http://soap.demo.org/"/>
+                    <entry key="soap" value="http://schemas.xmlsoap.org/soap/envelope/"/>
+                  </Map>
+                </value>
+              </entry>
+            </Map>
+            <Map>
+              <entry key="afterRule"/>
+              <entry key="beforeRule"/>
+              <entry key="body">
+                <value>
+                  <Map>
+                    <entry key="bodyFormData"/>
+                    <entry key="bodyFormat" value="raw"/>
+                    <entry key="jsonBody"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="contextUrl" value="pds-demo/HRConnectImpl?wsdl"/>
+              <entry key="header">
+                <value>
+                  <Map>
+                    <entry key="Content-Type" value="text/xml"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="httpMethodType" value="GET"/>
+              <entry key="operationType" value="Test Connection"/>
+              <entry key="paginationSteps"/>
+              <entry key="pagingInitialOffset">
+                <value>
+                  <Integer>0</Integer>
+                </value>
+              </entry>
+              <entry key="pagingSize">
+                <value>
+                  <Integer>50</Integer>
+                </value>
+              </entry>
+              <entry key="resMappingObj"/>
+              <entry key="responseCode">
+                <value>
+                  <List>
+                    <String>200</String>
+                  </List>
+                </value>
+              </entry>
+              <entry key="rootPath"/>
+              <entry key="sequenceNumberForEndpoint" value="2"/>
+              <entry key="uniqueNameForEndPoint" value="Test"/>
+              <entry key="xpathNamespaces"/>
+            </Map>
+            <Map>
+              <entry key="afterRule"/>
+              <entry key="beforeRule"/>
+              <entry key="body">
+                <value>
+                  <Map>
+                    <entry key="bodyFormData"/>
+                    <entry key="bodyFormat" value="raw"/>
+                    <entry key="jsonBody" value="&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:soap=&quot;http://soap.demo.org/&quot;&gt;&#10;   &lt;soapenv:Header/&gt;&#10;   &lt;soapenv:Body&gt;&#10;      &lt;soap:getUser&gt;&#10;         &lt;!--Optional:--&gt;&#10;         &lt;arg0&gt;$getobject.nativeIdentity$&lt;/arg0&gt;&#10;      &lt;/soap:getUser&gt;&#10;   &lt;/soapenv:Body&gt;&#10;&lt;/soapenv:Envelope&gt;"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="contextUrl" value="pds-demo/HRConnectImpl"/>
+              <entry key="header">
+                <value>
+                  <Map>
+                    <entry key="Content-Type" value="text/xml"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="httpMethodType" value="PUT"/>
+              <entry key="operationType" value="Get Object"/>
+              <entry key="paginationSteps"/>
+              <entry key="pagingInitialOffset">
+                <value>
+                  <Integer>0</Integer>
+                </value>
+              </entry>
+              <entry key="pagingSize">
+                <value>
+                  <Integer>50</Integer>
+                </value>
+              </entry>
+              <entry key="resMappingObj">
+                <value>
+                  <Map>
+                    <entry key="AgencyPersonGUID" value="agencyPersonGUID"/>
+                    <entry key="CRED Description" value="PIVCardType"/>
+                    <entry key="CRED Identifier" value="cardSerialNumber"/>
+                    <entry key="CRED Status" value="chuidStatus"/>
+                    <entry key="CRED Type" value="credentialOption"/>
+                    <entry key="Cred Expiration Date" value="cardExpiryDate"/>
+                    <entry key="Cred Status Initiation Date" value="issuanceLastUpdate"/>
+                    <entry key="FullName" value="fullName"/>
+                  </Map>
+                </value>
+              </entry>
+              <entry key="responseCode">
+                <value>
+                  <List>
+                    <String>200</String>
+                  </List>
+                </value>
+              </entry>
+              <entry key="rootPath" value="//ns2:getUserResponse/return"/>
+              <entry key="sequenceNumberForEndpoint" value="3"/>
+              <entry key="uniqueNameForEndPoint" value="Get User"/>
+              <entry key="xpathNamespaces">
+                <value>
+                  <Map>
+                    <entry key="ns2" value="http://soap.demo.org/"/>
+                    <entry key="soap" value="http://schemas.xmlsoap.org/soap/envelope/"/>
+                  </Map>
+                </value>
+              </entry>
+            </Map>
+          </List>
+        </value>
+      </entry>
+      <entry key="createAccountWithEntReq">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="enableHasMore" value="true"/>
+      <entry key="enableStatus"/>
+      <entry key="encrypted" value="accesstoken,refresh_token,oauth_token_info,client_secret,private_key,private_key_password,clientCertificate,clientKeySpec"/>
+      <entry key="genericWebServiceBaseUrl" value="http://ec2-13-59-156-171.us-east-2.compute.amazonaws.com:8080/"/>
+      <entry key="isGetObjectRequiredForPTA">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+      <entry key="nativeChangeDetectionAttributes"/>
+      <entry key="nativeChangeDetectionEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionOperations"/>
+      <entry key="oAuthJwtHeader">
+        <value>
+          <Map>
+            <entry key="alg" value="RS256"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="oAuthJwtPayload">
+        <value>
+          <Map>
+            <entry key="aud"/>
+            <entry key="exp" value="15f"/>
+            <entry key="iss"/>
+            <entry key="sub"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="private_key_to_update"/>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="templateApplication" value="Web Services"/>
+      <entry key="throwProvBeforeRuleException">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="timeoutInSeconds"/>
+    </Map>
+  </Attributes>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Schemas>
+    <Schema displayAttribute="FullName" groupAttribute="" identityAttribute="AgencyPersonGUID" instanceAttribute="" nativeObjectType="user" objectType="account">
+      <AttributeDefinition name="AgencyPersonGUID" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="CRED Identifier" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="CRED Type" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="CRED Status" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="CRED Description" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="CRED Expiration Date" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="CRED Status Initiation Date" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="FullName" type="string">
+        <Description/>
+      </AttributeDefinition>
+    </Schema>
+    <Schema displayAttribute="" identityAttribute="CRED Identifier" instanceAttribute="" nativeObjectType="group" objectType="group"/>
+  </Schemas>
+  <ApplicationScorecard/>
+</Application>

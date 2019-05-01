@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application authoritative="true" connector="sailpoint.connector.OpenConnectorAdapter" featuresString="SEARCH, DISCOVER_SCHEMA" icon="internetIcon" name="%%HR_APPLICATION_NAME%%" profileClass="" type="HRConnectConnector">
+  <Attributes>
+    <Map>
+      <entry key="authSearchAttributes">
+        <value>
+          <List>
+            <String>UserID</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="compositeDefinition"/>
+      <entry key="connectorClass" value="gov.dhs.cdm.sailpoint.connector.HRConnectConnector"/>
+      <entry key="formPath" value="HRConnectConnector.xhtml"/>
+      <entry key="queryEndpoint" value="%%HRCONNECT_WSDL_QUERY_ENDPOINT%%" />
+      <entry key="personEndpoint" value="%%HRCONNECT_WSDL_PERSON_ENDPOINT%%" />
+      <entry key="proxyAddress" value="%%HRCONNECT_PROXY_ADDRESS%%"/>
+      <entry key="proxyPort" value="%%HRCONNECT_PROXY_PORT%%"/>
+      <entry key="spnsrOrgId" value="%%HRCONNECT_SPNSR_ORG_ID%%"/>
+      <entry key="maxRecords" value="%%HRCONNECT_MAX_RECORDS%%" />
+      <entry key="maxThreads" value="%%HRCONNECT_MAX_THREADS%%" />
+      <entry key="rangeStart" value="%%HRCONNECT_RANGE_START%%" />
+      <entry key="rangeEnd" value="%%HRCONNECT_RANGE_END%%" />
+      <entry key="lastSuccessfulDate" value="" />
+      <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+      <entry key="nativeChangeDetectionAttributes"/>
+      <entry key="nativeChangeDetectionEnabled">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionOperations"/>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="templateApplication" value="HRConnectConnector"/>
+      <entry key="managerCorrelationFilter">
+        <value>
+          <Filter operation="EQ" property="uniqueIdentifier" value="SupervisorTRUID"/>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Schemas>
+    <Schema displayAttribute="" identityAttribute="AgencyPersonGUID" instanceAttribute="" nativeObjectType="account" objectType="account">
+	  <AttributeDefinition name="AgencyPersonGUID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+	  <AttributeDefinition name="PersonID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="FullName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="FirstName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="MiddleName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="LastName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Suffix" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="BusinessEmail" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="JobcodeTitle" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="MURDepartment" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="SponsorOrganizationalIdentifier" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="WorkLocationAddress1" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="WorkLocationAddress2" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="WorkLocationAddress3" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="WorkLocationCity" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="WorkLocationState" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="WorkLocationPostal" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="WorkLocationCountry" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="SupervisorTRUID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="EmployeeStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PersonType" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="UPN" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition multi="true" name="TrustId" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+       <AttributeDefinition multi="true" name="TrustName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+       <AttributeDefinition multi="true" name="TrustType" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition multi="true" name="TrustStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition multi="true" name="TrustCreationDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CardSerialNumber" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CredentialOption" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ChuidStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PIVCardType" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="IssuanceLastUpdate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CardExpiryDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+    </Schema>
+  </Schemas>
+  <ApplicationScorecard/>
+</Application>

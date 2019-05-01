@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Custom name="CDMCustomGlobal">
+    <Attributes>
+        <Map>
+            <entry key="key" value="value"/>
+        </Map>
+    </Attributes>
+</Custom>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Custom PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Custom name="TreasuryCustomGlobal">
+    <Attributes>
+        <Map>
+            <entry key="componentMapping">
+      			<value>
+        			<Map>
+          				<entry key="2000" value="Department of the Treasury"/>
+            			<entry key="2001" value="Departmental Offices"/>
+            			<entry key="2004" value="Inspector General"/>
+            			<entry key="2014" value="Office of the Inspector General for Tax Administration"/>
+            			<entry key="2046" value="Office of the Comptroller of the Currency"/>
+            			<entry key="2047" value="Office of Thrift Supervision"/>
+            			<entry key="2041" value="Bureau of Engraving and Printing"/>
+            			<entry key="2042" value="Bureau of Fiscal Services"/>
+            			<entry key="2044" value="United States Mint"/>
+            			<entry key="2022" value="Alcohol and Tobacco Tax and Trade Bureau"/>
+            			<entry key="2026" value="Financial Crimes Enforcement Network"/>
+            			<entry key="2050" value="Internal Revenue Service"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="userStatusMapping-USAccess">
+      			<value>
+        			<Map>
+          				<entry key="A" value="ACTIVE"/>
+            			<entry key="S" value="INACTIVE"/>
+            			<entry key="T" value="SEPARATED"/>
+            			<entry key="F" value="PENDING"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="userStatusMapping-HRConnect">
+      			<value>
+        			<Map>
+          				<entry key="A" value="ACTIVE"/>
+          				<entry key="D" value="SEPARATED"/>
+          				<entry key="Q" value="SEPARATED"/>
+          				<entry key="R" value="SEPARATED"/>
+          				<entry key="T" value="SEPARATED"/>
+            			<entry key="U" value="SEPARATED"/>
+            			<entry key="V" value="SEPARATED"/>
+            			<entry key="X" value="SEPARATED"/>
+            			<entry key="L" value="INACTIVE"/>
+            			<entry key="P" value="INACTIVE"/>
+            			<entry key="S" value="INACTIVE"/>
+            			<entry key="W" value="INACTIVE"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="userTypeMapping-USAccess">
+      			<value>
+        			<Map>
+          				<entry key="1" value="GOV"/>
+          				<entry key="2" value="GOV"/>
+          				<entry key="3" value="GOV"/>
+          				<entry key="4" value="GOV"/>
+          				<entry key="5" value="CONTRACTOR"/>
+            			<entry key="6" value="OGA"/>
+            			<entry key="7" value="CONTRACTOR"/>
+            			<entry key="8" value="CONTRACTOR"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="userTypeMapping-HRConnect">
+      			<value>
+        			<Map>
+          				<entry key="CWR" value="CONTRACTOR"/>
+          				<entry key="POI" value="GOV"/>
+          				<entry key="EMP" value="GOV"/>
+          				<entry key="Other" value="AGENCY OTHER"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="credStatusMapping">
+      			<value>
+        			<Map>
+          				<entry key="ACT" value="ISSUED"/>
+          				<entry key="SUS" value="SUSPENDED"/>
+          				<entry key="TRM" value="EXPIRED"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="credTypeMapping">
+      			<value>
+        			<Map>
+          				<entry key="PIV" value="PIVCARD"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="credDescMapping">
+      			<value>
+        			<Map>
+          				<entry key="0" value="Standard Dual Interface Card"/>
+          				<entry key="1" value="Dual Interface with 125 KHZ Coil"/>
+          			</Map>
+          		</value>
+          	</entry>
+          	<entry key="trustStatusMapping">
+      			<value>
+        			<Map>
+          				<entry key="A" value="AUTHORIZED"/>
+          				<entry key="P" value="PENDING"/>
+          				<entry key="R" value="REVOKED"/>
+          			</Map>
+          		</value>
+          	</entry>
+        </Map>
+    </Attributes>
+</Custom>

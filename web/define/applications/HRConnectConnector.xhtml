@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC
+                "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- (c) Copyright 2008 SailPoint Technologies, Inc., All Rights Reserved. -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+      xmlns:sp="http://sailpoint.com/ui">
+<body>
+
+<ui:composition>
+
+    <script type="text/javascript">
+      <!--//--><![CDATA[//><!--
+        helpKey = 'APPLICATION';
+
+        function getFieldValue(field) {
+            var val = null;
+            var fileName = $(field);
+            if ( fileName ) {
+               val = fileName.value;
+            }
+            return val;
+        }
+        
+        Ext.onReady(function() {
+        	
+        	var accountPanel = new Ext.Panel({
+                title : '#{sp:escapeJavascript(msgs.con_form_delimited_account)}',
+                contentEl: 'accountSettings'
+            }); 
+        	
+        	//Hide the Preview Button on the Schema Tab to avoid the iterate method being called with no context of a preview vs. full aggregation.
+            var appTab = Ext.getCmp('appTab'), schemaTab, objTypeTab;
+            if (appTab) {
+                schemaTab = appTab.queryById('schemaContent');
+                if (schemaTab) {
+                	schemaTab.addListener('afterlayout', function() {
+                		var previewBtn = Ext.query("input.primaryBtn[value='Preview']")[0];
+                		if(previewBtn){
+                            previewBtn.hidden = true;
+                		}
+                	});
+                }	   
+            }
+            
+            var groupPanel = new Ext.Panel({
+                title : '#{sp:escapeJavascript(msgs.con_form_delimited_group)}',
+                contentEl: 'groupSettings'
+            }); 
+            
+        });
+
+       //--><!]]>
+    </script>
+    <f:view>
+
+      <div class="spContent">
+        <h:outputText styleClass="sectionHeader" value="HRConnect Connector Configuration"/>
+        <div id='formErrorsTop' class="formError" style="display:none"/>
+      <div id="soapConnectionSettings">
+        <table class="spTable" style="border:0px" cellspacing="0">
+          <tr>
+            <td class='titleColumn certScheduleTitleCol' valign="center">
+              <h:outputText style='padding:5px' value="Query Endpoint"/>
+              <h:outputText styleClass="requiredText" value="*"/>
+            </td>
+
+            <td class="certScheduleHelpCol" valign="middle">
+              <h:graphicImage id="imgHlpQueryEndpoint" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="HRConnect WSDL Query Endpoint"/>
+
+            </td>
+            <td valign="center">
+              <h:inputText id="queryEndpoint"
+                           value="#{applicationObject.attributes['queryEndpoint']}"
+                           size="80"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>                   
+            </td>
+          </tr>
+		  
+		  
+		   <tr>
+            <td class='titleColumn certScheduleTitleCol' valign="center">
+              <h:outputText style='padding:5px' value="Person Endpoint"/>
+              <h:outputText styleClass="requiredText" value="*"/>
+            </td>
+
+            <td class="certScheduleHelpCol" valign="middle">
+              <h:graphicImage id="imgHlpPersonEndpoint" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="HRConnect WSDL Person Endpoint"/>
+
+            </td>
+            <td valign="center">
+              <h:inputText id="personEndpoint"
+                           value="#{applicationObject.attributes['personEndpoint']}"
+                           size="80"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>                   
+            </td>
+          </tr>
+
+          <tr>
+            <td class='titleColumn certScheduleTitleCol'>
+              <h:outputText style='padding:5px' value="Proxy Address"/>
+              <h:outputText styleClass="requiredText" value="*"/>
+            </td>
+            <td class="certScheduleHelpCol">
+              <h:graphicImage id="imgHlpProxyAddress" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="Server Proxy IP Address"/>
+            </td>
+            <td>
+              <h:inputText id="proxyAddress"
+                       value="#{applicationObject.attributes['proxyAddress']}"
+                           size="20"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>
+            </td>
+          </tr>
+          
+          <tr>
+            <td class='titleColumn certScheduleTitleCol'>
+              <h:outputText style='padding:5px' value="Proxy Port"/>
+              <h:outputText styleClass="requiredText" value="*"/>
+            </td>
+            <td class="certScheduleHelpCol">
+              <h:graphicImage id="imgHlpProxyPort" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="Server Proxy Port"/>
+            </td>
+            <td>
+              <h:inputText id="proxyPort"
+                       value="#{applicationObject.attributes['proxyPort']}"
+                           size="20"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>
+            </td>
+          </tr>
+		  
+		   <!-- SponsorOrganizationalIdentifier -->
+          <tr>
+            <td class='titleColumn certScheduleTitleCol'>
+              <h:outputText style='padding:5px' value="Sponsor Organizational IDs (,)"/>
+              <h:outputText styleClass="requiredText" value="*"/>
+            </td>
+            <td class="certScheduleHelpCol">
+              <h:graphicImage id="imgHlpSpnsrOrgId" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="SponsorOrganizationalIdentifier - NIST SP 800-87. Comma Separated String."/>
+            </td>
+            <td>
+              <h:inputText id="spnsrOrgId"
+                       value="#{applicationObject.attributes['spnsrOrgId']}"
+                           size="20"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>
+            </td>
+          </tr>
+        </table>
+    </div>    
+            <!-- Filtering -->
+        <br/><h:outputText styleClass="sectionHeader" value="Application features"/><br/>
+        <table class="spTable" style="border:0px" cellspacing="0">        
+        
+        <!-- Maximum Records to Process -->
+          <tr>
+            <td class='titleColumn certScheduleTitleCol'>
+              <h:outputText style='padding:5px' value="Maximum Records"/>
+            </td>
+            <td class="certScheduleHelpCol">
+              <h:graphicImage id="imgHlpMaxRecords" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="Maximum Records to Process"/>
+            </td>
+            <td>
+              <h:inputText id="maxRecords"
+                       value="#{applicationObject.attributes['maxRecords']}"
+                           size="20"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>
+            </td>
+            </tr>
+            
+            <!-- Maximum Threads to Use -->
+          <tr>
+            <td class='titleColumn certScheduleTitleCol'>
+              <h:outputText style='padding:5px' value="Maximum Threads"/>
+            </td>
+            <td class="certScheduleHelpCol">
+              <h:graphicImage id="imgHlpMaxThreads" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="Maximum Threads to Use"/>
+            </td>
+            <td>
+              <h:inputText id="maxThreads"
+                       value="#{applicationObject.attributes['maxThreads']}"
+                           size="20"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>
+            </td>
+            </tr>
+			
+			     <!-- Range Start -->
+          <tr>
+            <td class='titleColumn certScheduleTitleCol'>
+              <h:outputText style='padding:5px' value="Range Start"/>
+            </td>
+            <td class="certScheduleHelpCol">
+              <h:graphicImage id="imgHlpRangeStart" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="QueryModifiedList Range Start"/>
+            </td>
+            <td>
+              <h:inputText id="rangeStart"
+                       value="#{applicationObject.attributes['rangeStart']}"
+                           size="20"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>
+            </td>
+            </tr>
+             <!-- Range End -->
+          <tr>
+            <td class='titleColumn certScheduleTitleCol'>
+              <h:outputText style='padding:5px' value="Range End"/>
+            </td>
+            <td class="certScheduleHelpCol">
+              <h:graphicImage id="imgHlpRangeEnd" styleClass="helpIcon" url="/images/icons/dashboard_help_16.png" 
+                              alt="QueryModifiedList Range End"/>
+            </td>
+            <td>
+              <h:inputText id="rangeEnd"
+                       value="#{applicationObject.attributes['rangeEnd']}"
+                           size="20"
+                           disabled="#{!sp:hasRight(facesContext, 'ManageApplication')}"
+                           readonly="#{!sp:hasRight(facesContext, 'ManageApplication')}"/>
+            </td>
+            </tr>
+           
+        </table>
+    
+      </div>
+
+
+      <div style="display:none; border:0px">
+        <div id="groupSettings" class='spContent'>
+          <ui:include src="delimitedAttributesInclude.xhtml">
+      <ui:param name="nameSpace" value="group"/>
+            <ui:param name="schemaType" value="group."/>
+          </ui:include>
+         </div>
+      </div>
+
+      <div id='formErrorsBottom' class="formError" style="display:none"/>
+    </f:view>
+</ui:composition>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="CDM-Rule-RenderRule-TrustType">
+  <Source>
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import gov.treasury.cdm.constants.TreasuryCustomGlobalStringConst;
+import sailpoint.object.Custom;
+import sailpoint.tools.Util;
+Log log = LogFactory.getLog("rule.RenderRule-TrustType");
+log.trace("Entering trust type render rule");
+String trustType = null;
+ArrayList trustTypeList = new ArrayList();
+if (value != null) {
+  log.debug("trustType is: " + value);
+  if (value instanceof List) {
+    List&lt;String> valueList = (List) value;
+    for (String valueString : valueList) {
+      if (valueString.equals(TreasuryCustomGlobalStringConst.TRUST_TYPE_INVESTIGATIVE_HRCONNECT)) {
+        trustTypeList.add(valueString.toUpperCase());
+      } else {
+        log.warn("trust type " + valueString + " not investigative");
+      }
+    }
+    trustType = trustTypeList.toString();
+    trustType = trustType.replace("[", "");
+    trustType = trustType.replace("]", "");
+  }
+} else {
+  log.warn("trust type is null.");
+}
+log.trace("Exiting trust type render rule - Returning: " + trustType);
+return trustType;</Source>
+</Rule>

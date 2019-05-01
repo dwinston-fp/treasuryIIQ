@@ -1,0 +1,86 @@
+<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy">
+	<wsp:ExactlyOne>
+		<wsp:All>
+			<sp:SymmetricBinding
+				xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+				<wsp:Policy>
+					<sp:ProtectionToken>
+						<wsp:Policy>
+							<sp:X509Token
+								sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+								<wsp:Policy>
+									<sp:RequireDerivedKeys />
+									<sp:RequireThumbprintReference />
+									<sp:WssX509V3Token10 />
+								</wsp:Policy>
+							</sp:X509Token>
+						</wsp:Policy>
+					</sp:ProtectionToken>
+					<sp:AlgorithmSuite>
+						<wsp:Policy>
+							<sp:Basic256 />
+						</wsp:Policy>
+					</sp:AlgorithmSuite>
+					<sp:Layout>
+						<wsp:Policy>
+							<sp:Strict />
+						</wsp:Policy>
+					</sp:Layout>
+					<sp:IncludeTimestamp />
+					<sp:EncryptSignature />
+					<sp:OnlySignEntireHeadersAndBody />
+				</wsp:Policy>
+			</sp:SymmetricBinding>
+			<sp:SignedParts
+				xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+				<sp:Body />
+				<sp:Header Name="To"
+					Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+				<sp:Header Name="From"
+					Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+				<sp:Header Name="FaultTo"
+					Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+				<sp:Header Name="ReplyTo"
+					Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+				<sp:Header Name="MessageID"
+					Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+				<sp:Header Name="RelatesTo"
+					Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+				<sp:Header Name="Action"
+					Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+			</sp:SignedParts>
+			<sp:EncryptedParts
+				xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+				<sp:Body />
+			</sp:EncryptedParts>
+			<sp:EndorsingSupportingTokens
+				xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+				<wsp:Policy>
+					<sp:X509Token
+						sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+						<wsp:Policy>
+							<sp:RequireThumbprintReference />
+							<sp:WssX509V3Token10 />
+						</wsp:Policy>
+					</sp:X509Token>
+				</wsp:Policy>
+			</sp:EndorsingSupportingTokens>
+			<sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+				<wsp:Policy>
+					<sp:MustSupportRefThumbprint />
+					<sp:MustSupportRefEncryptedKey />
+					<sp:RequireSignatureConfirmation />
+				</wsp:Policy>
+			</sp:Wss11>
+			<sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+				<wsp:Policy>
+					<sp:MustSupportIssuedTokens />
+					<sp:RequireClientEntropy />
+					<sp:RequireServerEntropy />
+				</wsp:Policy>
+			</sp:Trust10>
+			<wsap:UsingAddressing />
+		</wsp:All>
+	</wsp:ExactlyOne>
+</wsp:Policy>

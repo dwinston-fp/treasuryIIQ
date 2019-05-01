@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ObjectConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ObjectConfig name="Link">
+    <ObjectAttribute displayName="Privileged Account" editMode="ReadOnly" name="privilegedAccount" type="string" extendedNumber="1">
+    	<RuleRef>
+      		<Reference class="sailpoint.object.Rule" name="Privileged Account LinkAttribute Rule"/>
+    	</RuleRef>
+    	<AttributeSource name="GlobalRule:Privileged Account LinkAttribute Rule">
+      		<RuleRef>
+        		<Reference class="sailpoint.object.Rule" name="Privileged Account LinkAttribute Rule"/>
+      		</RuleRef>
+    	</AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Account Control" editMode="ReadOnly" name="accountControl" type="string" extendedNumber="2"/>
+    <ObjectAttribute displayName="System Account" editMode="ReadOnly" name="systemAccount" type="string" extendedNumber="3">
+    	<RuleRef>
+      		<Reference class="sailpoint.object.Rule" name="System Account LinkAttribute Rule"/>
+    	</RuleRef>
+    	<AttributeSource name="GlobalRule:System Account LinkAttribute Rule">
+      		<RuleRef>
+        		<Reference class="sailpoint.object.Rule" name="System Account LinkAttribute Rule"/>
+      		</RuleRef>
+    	</AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Shared Account" editMode="ReadOnly" name="sharedAccount" type="string" extendedNumber="4">
+    	<RuleRef>
+      		<Reference class="sailpoint.object.Rule" name="Shared Account LinkAttribute Rule"/>
+    	</RuleRef>
+    	<AttributeSource name="GlobalRule:Shared Account LinkAttribute Rule">
+      		<RuleRef>
+        		<Reference class="sailpoint.object.Rule" name="Shared Account LinkAttribute Rule"/>
+      		</RuleRef>
+    	</AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Network Account" editMode="ReadOnly" name="networkAccount" type="string" extendedNumber="5"/>
+</ObjectConfig>

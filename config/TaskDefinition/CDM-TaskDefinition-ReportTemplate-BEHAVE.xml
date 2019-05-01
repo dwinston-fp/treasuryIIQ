@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition  executor="sailpoint.reporting.LiveReportExecutor" name="BEHAVE Report Template" progressMode="Percentage" resultAction="Rename" subType="Identity and User Reports" template="true" type="LiveReport">
+  <Attributes>
+    <Map>
+     <entry key="application" value="%%BEHAVE_APPLICATION_NAME%%"/>
+     <entry key="report">
+        <value>
+          <LiveReport title="BEHAVE Report Template">
+             <DataSource objectType="sailpoint.object.Link" type="Filter">
+            	<QueryParameters>
+					<Parameter argument="application">  
+						<QueryScript>  
+							<Source>  
+								import sailpoint.object.Filter;  
+ 
+								Filter f =Filter.or(Filter.eq("application.id", value), Filter.eq("application.name", value));  
+								if (f!=null) {  
+									queryOptions.addFilter(f);  
+								}  
+								return queryOptions;  
+							</Source>  
+						</QueryScript>  
+					</Parameter>  
+				</QueryParameters>
+            </DataSource>
+            <ReportForm>
+              <Reference class="sailpoint.object.Form"  name="Application Account Attributes Report Form"/>
+            </ReportForm>
+            <Columns>
+              <ReportColumnConfig field="uniqueIdentifier" header="User Unique Identifier" property="identity.uniqueIdentifier" sortable="true" width="110"/>
+              <ReportColumnConfig field="identityFirstname" header="rept_user_details_col_firstname" property="identity.firstname" sortable="true" width="110"/>
+              <ReportColumnConfig field="identityLastname" header="rept_user_details_col_lastname" property="identity.lastname" sortable="true" width="110"/>
+              <ReportColumnConfig field="identityEmail" header="Email" property="identity.email" sortable="true" width="110"/>
+              <ReportColumnConfig field="identityManager" header="rept_user_details_col_manager" property="identity.manager.displayName" sortable="true" width="110"/>
+              <ReportColumnConfig field="identityStatus" header="User Status" property="identity.userStatus" sortable="true" width="110"/>
+              <ReportColumnConfig field="trainingId" header="BEHAVE Identifier" property="attributes.%%BEHAVE_ID_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="trainingName" header="BEHAVE Name" property="attributes.%%BEHAVE_NAME_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="trainingStatus" header="BEHAVE Status" property="attributes.%%BEHAVE_STATUS_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="type" header="BEHAVE Type" property="attributes.%%BEHAVE_TYPE_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="description" header="BEHAVE Description" property="attributes.%%BEHAVE_DESC_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="creationDate" header="Date BEHAVE Created/Assigned" property="attributes.%%BEHAVE_CREATE_DATE_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="expirationDate" header="Date Assigned BEHAVE Expires" property="attributes.%%BEHAVE_EXPIRATION_DATE_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="statusGracePeriod" header="BEHAVE Status Grace Period" property="attributes.%%BEHAVE_STATUS_GRACE_PERIOD_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="statusInitiated" header="Date BEHAVE Status Initiated/Changed" property="attributes.%%BEHAVE_STATUS_INIT_DATE_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="reviewDate" header="Date BEHAVE Last Reviewed" property="attributes.%%BEHAVE_REVIEW_DATE_SOURCE_ATTR%%" sortable="true" width="110"/>
+              <ReportColumnConfig field="reviewGracePeriod" header="BEHAVE Review Grace Period" property="attributes.%%BEHAVE_REVIEW_GRACE_PERIOD_SOURCE_ATTR%%" sortable="true" width="110"/>
+            </Columns>
+          </LiveReport>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <Description>Displays attributes for all accounts on a given application
+  </Description>
+  <RequiredRights>
+  	<Reference class="sailpoint.object.SPRight" name="FullAccessUserReport"/>
+  </RequiredRights>
+  <Signature>
+    <Inputs>
+      <Argument name="application" required="true" type="Application">
+        <Description>rept_account_attributes_app_desc</Description>
+      </Argument>
+    </Inputs>
+  </Signature>
+</TaskDefinition>
+

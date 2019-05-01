@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="CDM-Rule-RenderRule-CredStatus">
+  <Source>
+import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import gov.treasury.cdm.constants.TreasuryCustomGlobalStringConst;
+import sailpoint.object.Custom;
+import sailpoint.tools.Util;
+Log log = LogFactory.getLog("rule.RenderRule-CredStatus");
+log.trace("Entering cred status render rule");
+String credStatus = null;
+if (Util.isNotNullOrEmpty(value)) {
+  log.debug("credStatus is: " + value);
+  try {
+    Custom globalConsts =
+        context.getObjectByName(Custom.class,
+            TreasuryCustomGlobalStringConst.CUSTOM_GLOBAL_OBJECT_NAME);
+    if (globalConsts != null) {
+      Map statusMap =
+          (Map) globalConsts.get(TreasuryCustomGlobalStringConst.CRED_STATUS_MAPPING_KEY);
+      if (statusMap != null) {
+        if (statusMap.get(value) != null) {
+          credStatus = (String) statusMap.get(value);
+        } else {
+          log.trace("cred status not mapped to value");
+        }
+      } else {
+        log.warn("cred status map is null");
+      }
+    } else {
+      log.warn("Unable to retrieve custom global object");
+    }
+  } catch (Exception e) {
+    log.error(" An exception occured in mapping the credstatus " + value);
+  }
+} else {
+  log.warn("cred status is null.");
+}
+log.trace("Exiting CRED status render rule - Returning: " + credStatus);
+return credStatus;</Source>
+</Rule>

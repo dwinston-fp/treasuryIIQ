@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition name="BEHAVE Report" resultAction="Rename" subType="Identity and User Reports" type="LiveReport">
+  <Attributes>
+    <Map>
+      <entry key="disableDetail" value="false"/>
+      <entry key="disableSummary" value="false"/>
+      <entry key="reportColumnOrder" value="uniqueIdentifier, identityFirstname, identityLastname, identityEmail, identityManager, identityStatus, trainingId, trainingName, trainingStatus, type, description, creationDate, expirationDate, statusGracePeriod, statusInitiated, reviewDate, reviewGracePeriod"/>
+    </Map>
+  </Attributes>
+  <Description>Displays BEHAVE attributes for %%BEHAVE_APPLICATION_NAME%%</Description>
+  <RequiredRights>
+  	<Reference class="sailpoint.object.SPRight" name="FullAccessUserReport"/>
+  </RequiredRights>
+  <Parent>
+    <Reference class="sailpoint.object.TaskDefinition" name="BEHAVE Report Template"/>
+  </Parent>
+</TaskDefinition>

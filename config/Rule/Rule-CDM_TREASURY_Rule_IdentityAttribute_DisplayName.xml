@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="Display Name IdentityAttribute Rule" type="IdentityAttribute">
+  <Description>
+Identity attribute rules are used when the value is not simply a copy of an application account attribute value.  A transformation may be necessary on the account attribute, or several account attributes may need to be combined to produce the identity attribute.
+
+This rule can be called in two ways: as a global mapping rule and an application mapping rule.  A global mapping rule is called whenever the identity is refreshed.  The rule can look at any account attributes.  An application mapping rule is called only when the identity contains an account link for that application, this link is passed in the "link" argument which is not passed in global mapping rules.
+  </Description>
+  <Signature returnType="String">
+    <Inputs>
+      <Argument name="log">
+        <Description>
+          The log object associated with the SailPointContext.
+        </Description>
+      </Argument>
+      <Argument name="context">
+        <Description>
+          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+        </Description>
+      </Argument>
+      <Argument name="environment" type="Map">
+        <Description>
+           Arguments passed to the aggregation or refresh task.
+        </Description>
+      </Argument>
+      <Argument name="identity">
+        <Description>
+           The Identity object that represents the user
+           that is being aggregated.
+        </Description>
+      </Argument>
+      <Argument name="attributeDefinition">
+        <Description>
+           The AttributeDefinition object for this attribute.
+        </Description>
+      </Argument>
+      <Argument name="link">
+        <Description>
+           The Link object from the Identity, if this is an application
+           mapping rule.  For global mapping rules this will be void.
+        </Description>
+      </Argument>
+      <Argument name="attributeSource">
+        <Description>
+          The AttributeSource object.
+        </Description>
+      </Argument>
+      <Argument name="oldValue">
+        <Description>
+          The original value of the application account attribute.
+        </Description>
+      </Argument>
+    </Inputs>
+    <Returns>
+      <Argument name="attributeValue">
+        <Description>
+          The value of the attribute that should be populated.
+          The rule should return this value.
+        </Description>
+      </Argument>
+    </Returns>
+  </Signature>
+  <Source>
+import sailpoint.object.Identity;
+import sailpoint.object.Link;
+import gov.dhs.cdm.constants.CustomGlobalStringConst;
+import java.util.List;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+Log log = LogFactory.getLog("rule.IdentityAttribute-DisplayName");
+log.trace("Entering display name identity attribute rule");
+String displayName = "";
+if (identity != null) {
+  Object firstNameObj =
+      identity.getAttribute(CustomGlobalStringConst.FIRST_NAME_IDENTITY_ATTR_NAME);
+  Object middleNameObj =
+      identity.getAttribute(CustomGlobalStringConst.MIDDLE_NAME_IDENTITY_ATTR_NAME);
+  Object lastNameObj = identity.getAttribute(CustomGlobalStringConst.LAST_NAME_IDENTITY_ATTR_NAME);
+  String firstName = "";
+  if (firstNameObj != null) {
+    if (firstNameObj instanceof List) {
+      List firstNameList = (List) firstNameObj;
+      log.trace("first name object is List: " + firstNameList);
+      firstName = (String) firstNameList.get(0);
+    } else if (firstNameObj instanceof String) {
+      log.trace("first name object is string: " + firstName);
+      firstName = (String) firstNameObj;
+    } else {
+      log.error("firstName is not a list or a string");
+    }
+  }
+  String middleName = "";
+  if (middleNameObj != null) {
+    if (middleNameObj instanceof List) {
+      List middleNameList = (List) middleNameObj;
+      log.trace("middle name object is List: " + middleNameList);
+      middleName = (String) middleNameList.get(0);
+      middleName = " " + middleName;
+    } else if (middleNameObj instanceof String) {
+      middleName = (String) middleNameObj;
+      log.trace("middle name is string: " + middleName);
+      middleName = " " + middleName;
+    } else {
+      log.error("middleName is not a list or a string");
+    }
+  }
+  String lastName = "";
+  if (lastNameObj != null) {
+    if (lastNameObj instanceof List) {
+      List lastNameList = (List) lastNameObj;
+      log.trace("last name object is List: " + lastNameList);
+      lastName = (String) lastNameList.get(0);
+    } else if (lastNameObj instanceof String) {
+      lastName = (String) lastNameObj;
+      log.trace("last name object is String: " + lastName);
+    } else {
+      log.error("lastName is not a list or a string");
+    }
+  }
+  displayName = firstName + middleName + " " + lastName;
+} else {
+  log.warn("Identity is null.");
+}
+log.trace("Exiting displayName identity attribute rule - Returning: " + displayName);
+return displayName;</Source>
+</Rule>

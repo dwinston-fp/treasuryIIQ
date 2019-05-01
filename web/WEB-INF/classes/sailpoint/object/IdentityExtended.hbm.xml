@@ -1,0 +1,121 @@
+<!-- (c) Copyright 2008 SailPoint Technologies, Inc., All Rights Reserved. -->
+
+<!--
+Extended attribute mappings for Identity.
+
+By default we will map 10 extended attributes, but this may be raised to
+a maximum of 20.  Using ExtendedPropertyAccessor can add attributes beyond 
+the limit of 20 and have meaningful names.  Example of ExtendedPropertyAccessor 
+is shown below.
+
+Only the first five attributes are indexed, to provide
+an example of how to specify an index.  In a production deployment you
+will usually index most of the extended attributes since they are
+usually added for searching, but index maintenance slows down updates to
+the identity cube so add them only if necessary.
+
+All extended properties must be of type="string".
+
+We need the extended attributes to be large enough to hold arbitrary
+customer data but not so large that Hibernate turns them into a blob or
+other type which cannot be used in searches.
+
+The maximum size of a VARCHAR on various sysems is:
+
+    Oracle - 4000
+    SQLServer - 8000
+    MySQL 5 - 65K
+    DB2 8.1 - 32K
+
+With each dialect, Hibernate will use a non-indexable type for strings
+of a certain size length.  This size cliff is often less than the max size
+for varchar on that system, so be careful if extending the sizes of these
+fields beyond what is specified in this file.
+
+SQL Server will not index a value greater than 900 "bytes".
+Now that we're using NVARCHAR on SQL Server there are two bytes per
+characcter so the maximum size of an indexed string column is 450.
+If you know you are not running on SQL Server, or you know you will
+not need an index on the column,  you may raise the size safely.
+
+MySQL will only index 767 "bytes" by default for InnoDB tables.
+Using varchar with UTF-8, this equates to at most 255 characters.
+MySQL will allow indexing a subset of the column length,
+so generated ddl will have mysql indexes substringed to 255 by default.
+
+-->
+
+    <property name="extended1" type="string" length="450"
+              index="spt_identity_extended1_ci"/>
+    <property name="extended2" type="string" length="450"
+              index="spt_identity_extended2_ci"/>
+    <property name="extended3" type="string" length="450"
+              index="spt_identity_extended3_ci"/>
+    <property name="extended4" type="string" length="450"
+              index="spt_identity_extended4_ci"/>
+    <property name="extended5" type="string" length="450"
+              index="spt_identity_extended5_ci"/>
+
+    <property name="extended6" type="string" length="450"/>
+    <property name="extended7" type="string" length="450"/>
+    <property name="extended8" type="string" length="450"/>
+    <property name="extended9" type="string" length="450"/>
+    <property name="extended10" type="string" length="450"/>
+    <property name="extended11" type="string" length="450"/>
+    <property name="extended12" type="string" length="450"/>
+    <property name="extended13" type="string" length="450"/>
+    <property name="extended14" type="string" length="450"/>
+    <property name="extended15" type="string" length="450"/>
+    <property name="extended16" type="string" length="450"/>
+    <!-- An example of using ExtendedPropertyAccessor to add
+         attributes beyond the limit of 20 numbered 
+         SailPointObject properties and have meaningful names.
+
+    <property name="costCenter" type="string" length="450"
+              access="sailpoint.persistence.ExtendedPropertyAccessor"/>
+    -->
+
+<!-- CDM Extended Attributes Start -->
+<!-- CDM Extended Attributes Searchable -->
+<property name="uniqueIdentifier" type="string" length="256" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_unique_identifier_ci"/>
+<property name="jobTitle" type="string" length="256" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_job_title_ci"/>
+<property name="department" type="string" length="256" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_department_ci"/>
+<property name="component" type="string" length="256" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_component_ci"/>
+<property name="city" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_location_city_ci"/>
+<property name="state" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_location_state_ci"/>
+<property name="userStatus" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_userStatus_ci"/>
+<property name="userType" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_user_type_ci"/>
+<property name="privilegedUser" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_priv_user_ci"/>
+<property name="unprivilegedUser" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_unpriv_user_ci"/>
+<property name="userStatusInitiationDate" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_stat_init_date_ci"/>
+<property name="userReviewDate" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_review_date_ci"/>
+<property name="userReviewGracePeriod" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_grace_period_ci"/>
+
+<!-- CDM Extended Attributes Non-Searchable-->
+<property name="middleName" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor"/>
+<property name="physicalOfficeLocation" type="string" length="1024" access="sailpoint.persistence.ExtendedPropertyAccessor"/>
+<property name="securityDutyIds" type="string" length="256" access="sailpoint.persistence.ExtendedPropertyAccessor" />	
+<property name="nameSuffix" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" />
+
+<!-- Treasury Custom Extended Identity Attributes -->
+<property name="personID" type="string" length="128" access="sailpoint.persistence.ExtendedPropertyAccessor" index="spt_identity_person_id_ci"/>
+
+<!-- Commented out Extended Attributes -->
+<!-- <property name="ouManagerId " type="string" length="256" access="sailpoint.persistence.ExtendedPropertyAccessor" />	-->
+
+<!-- CDM Extended Attributes End -->
+
+    <!--
+    <property name="extended16" type="string" length="450"/>
+    <property name="extended17" type="string" length="450"/>
+    <property name="extended18" type="string" length="450"/>
+    <property name="extended19" type="string" length="450"/>
+    <property name="extended20" type="string" length="450"/>
+    -->
+
+    <many-to-one name="extendedIdentity1" class="sailpoint.object.Identity"/>
+    <many-to-one name="extendedIdentity2" class="sailpoint.object.Identity"/>
+    <many-to-one name="extendedIdentity3" class="sailpoint.object.Identity"/>
+    <many-to-one name="extendedIdentity4" class="sailpoint.object.Identity"/>
+    <many-to-one name="extendedIdentity5" class="sailpoint.object.Identity"/>
+    

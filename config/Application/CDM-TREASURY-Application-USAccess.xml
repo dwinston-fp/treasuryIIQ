@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application connector="sailpoint.connector.OpenConnectorAdapter" featuresString="SEARCH, DISCOVER_SCHEMA" icon="internetIcon" name="%%CRED_APPLICATION_NAME%%" profileClass="" type="USAccessConnector">
+  <Attributes>
+    <Map>
+      <entry key="authSearchAttributes">
+        <value>
+          <List>
+            <String>UserID</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="compositeDefinition"/>
+      <entry key="connectorClass" value="gov.dhs.cdm.sailpoint.connector.USAccessConnector"/>
+      <entry key="formPath" value="USAccessConnector.xhtml"/>
+      <entry key="endpoint" value="%%USACCESS_WSDL_ENDPOINT%%" />
+      <entry key="proxyAddress" value="%%USACCESS_PROXY_ADDRESS%%" />
+      <entry key="proxyPort" value="%%USACCESS_PROXY_PORT%%" />
+      <entry key="keyStorePath" value="%%USACCESS_KEYSTORE_PATH%%" />
+      <entry key="keyStorePassword" value="%%USACCESS_KEYSTORE_PASSWORD%%" />
+      <entry key="keyStoreAlias" value="%%USACCESS_KEYSTORE_ALIAS%%" />
+      <entry key="keyStoreType" value ="%%USACCESS_KEYSTORE_TYPE%%" />
+      <entry key="trustStorePath" value="%%USACCESS_TRUSTSTORE_PATH%%" />
+      <entry key="trustStorePassword" value="%%USACCESS_TRUSTSTORE_PASSWORD%%" />
+      <entry key="trustStoreAlias" value="%%USACCESS_TRUSTSTORE_ALIAS%%" />
+      <entry key="trustStoreType" value="%%USACCESS_TRUSTSTORE_TYPE%%" />
+      <entry key="policyPath" value="%%USACCESS_POLICY_PATH%%" />
+      <entry key="systemId" value="%%USACCESS_SYSTEM_ID%%" />
+      <entry key="transOrgId" value="%%USACCESS_TRANS_ORG_ID%%" />
+      <entry key="spnsrOrgId" value="%%USACCESS_SPNSR_ORG_ID%%" />
+      <entry key="maxRecords" value="%%USACCESS_MAX_RECORDS%%" />
+      <entry key="maxThreads" value="%%USACCESS_MAX_THREADS%%" />
+      <entry key="rangeStart" value="%%USACCESS_RANGE_START%%" />
+      <entry key="rangeEnd" value="%%USACCESS_RANGE_END%%" />
+      <entry key="queryList">
+        <value>
+          <List>
+            <String>PersonalInformation</String>
+            <String>SponsorshipInformation</String>
+            <String>StatusInformation</String>
+            <String>CredentialInformation</String>
+            <String>PriorCredentialInformation</String>
+            <String>FingerprintInformation</String>
+            <String>EnrollmentInformation</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="lastSuccessfulDate" value="" />
+      <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+      <entry key="nativeChangeDetectionAttributes"/>
+      <entry key="nativeChangeDetectionEnabled">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionOperations"/>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="templateApplication" value="USAccessConnector"/>
+    </Map>
+  </Attributes>
+  <CorrelationRule>
+    <Reference class="sailpoint.object.Rule" name="CDM-Treasury-Rule-Correlation-USAccess"/>
+  </CorrelationRule>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Schemas>
+    <Schema displayAttribute="" identityAttribute="PersonIdentifier-PersonID" instanceAttribute="" nativeObjectType="account" objectType="account">
+	  <AttributeDefinition name="PersonIdentifier-PersonID" type="string">
+        <Description>USAccess unique identifier.</Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-IssuanceID" type="string">
+        <Description>IssuanceID of the issuance.</Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-ChuidStatus" type="string">
+        <Description>Card Status (Active, Suspended, Terminated).</Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-UPN" type="string">
+        <Description>User specified UPN.</Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Enrollment-InitialEnrollmentDate" type="string">
+        <Description>Enrollment Information initial date.</Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Enrollment-LastEnrollmentDate" type="string">
+        <Description>Enrollment Information last enrolled date.</Description>
+      </AttributeDefinition>
+      <!-- DICAM Attributes -->
+      <AttributeDefinition name="PersonIdentifier-SponsorOrganizationalIdentifier" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PersonIdentifier-AgencyPersonGUID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-FirstName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-MiddleName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-LastName" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-Suffix" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-DateofBirth" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-TaxID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-ForeignID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-CitizenshipCountryCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-BirthCountryCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-BirthStateCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-BirthCity" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-AddressLine1" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-AddressLine2" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-AddressLine3" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-City" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-StateCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-CountryCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-Zip" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-HomePhone" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-CellPhone" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-HomeEmail" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-OtherEmail" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-Gender" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-Race" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-EyeColor" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-HairColor" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-Height" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Personal-Weight" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-PersonOrganizationAssociationCategory" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-FederalEmergencyResponseOfficialFlag" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-DateofSponsorship" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-SponsorPID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-BusinessPhone" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-BusinessEmail" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-PIVCardRequiredCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-PIVCardType" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-CardShippingTypeCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-CardShipAddrCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-AgencySpecificText" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-Rank" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-AgencySpecificData" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-EmployeeStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-SubAgencyAbbreviation" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-CardHeader" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-ContractNumber" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-EmployeeID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-PIVCertificateSet" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Sponsorship-CredentialOption" type="string">
+        <Description></Description>
+      </AttributeDefinition>  
+      <AttributeDefinition name="Enrollment-EnrollmentSiteCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Enrollment-RegistrarPersonID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Fingerprint-PrimaryPrintIndicator" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Fingerprint-SecondaryPrintIndicator" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Fingerprint-FTEReasonCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-NACAdjudicatorPersonID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-NACAdjudicationValue" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-NACAdjudicationEffDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-NACIAdjudicatorPersonID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-NACIAdjudicationValue" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-NACIAdjudicationEffDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-AdjudicationNote" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-SOI" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-SON" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Adjudication-OPAC" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-SponsorshipStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-SponsorshipLastUpdate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-EnrollmentStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-EnrollmentLastUpdate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-AdjudicationStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-AdjudicationLastUpdate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-IssuanceStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-IssuanceLastUpdate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-ReplacementStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-ReplacementLastUpdate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-DocumentReferral" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-DuplicateCheck" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-CertificateReissuanceRequest" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-CertificateReissuanceRequestDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-CardReprintRequest" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-CardReprintRequestDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-CardReissueRequest" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-CardReissueRequestDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-AffiliatedDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-EnrolledDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-ProductionInitiatedDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-DeliveredDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-ActivatedDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-TerminatedDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-SuspendedDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-ProcessStatusCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Status-ProcessStatusCodeDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-PivAuthenticationCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-DigitalSignatureCertficate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-EncryptionCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-CardAuthenticationCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-Chuid" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-CardSerialNumber" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-CardStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-PIVCardType" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-CertificateExpiryDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-CardExpiryDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-Fascn" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="PriorCredential-FascnDecoded" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-IssuanceID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-PivAuthenticationCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-DigitalSignatureCertficate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-EncryptionCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-CardAuthenticationCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-Chuid" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-ChuidStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>      
+      <AttributeDefinition name="CurrentCredential-CardSerialNumber" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-CardStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-PIVCardType" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-CertificateExpiryDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-CardExpiryDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-Fascn" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="CurrentCredential-FascnDecoded" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-IssuanceID" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-PivAuthenticationCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-DigitalSignatureCertficate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-EncryptionCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-CardAuthenticationCertificate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-Chuid" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-ChuidStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-CardSerialNumber" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-CardStatus" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-PIVCardType" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-CertificateExpiryDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-CardExpiryDate" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-Fascn" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="ReplacementCredential-FascnDecoded" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Photograph-HighResPhoto" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="Photograph-LowResPhoto" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="TransactionStatus-StatusCode" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="TransactionStatus-StatusMessage" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+    </Schema>
+  </Schemas>
+  <ApplicationScorecard/>
+</Application>

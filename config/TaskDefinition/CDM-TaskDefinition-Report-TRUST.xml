@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition name="TRUST Report" resultAction="Rename" subType="Identity and User Reports" type="LiveReport">
+  <Attributes>
+    <Map>
+      <entry key="disableDetail" value="false"/>
+      <entry key="disableSummary" value="false"/>
+      <entry key="reportColumnOrder" value="uniqueIdentifier, identityFirstname, identityLastname, identityEmail, identityManager, identityStatus, trustId, trustStatus, trustName, type, creationDate"/>
+    </Map>
+  </Attributes>
+  <Description>Displays TRUST attributes for %%HR_APPLICATION_NAME%%</Description>
+  <RequiredRights>
+  	<Reference class="sailpoint.object.SPRight" name="FullAccessUserReport"/>
+  </RequiredRights>
+  <Parent>
+    <Reference class="sailpoint.object.TaskDefinition" name="TRUST Report Template"/>
+  </Parent>
+</TaskDefinition>

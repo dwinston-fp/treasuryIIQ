@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition name="CRED Report" resultAction="Rename" subType="Identity and User Reports" type="LiveReport">
+  <Attributes>
+    <Map>
+      <entry key="disableDetail" value="false"/>
+      <entry key="disableSummary" value="false"/>
+      <entry key="reportColumnOrder" value="uniqueIdentifier, identityFirstname, identityLastname, identityEmail, identityManager, identityStatus, credId, type, credStatus, description, expirationDate, initiationDate"/>
+    </Map>
+  </Attributes>
+  <Description>Displays CRED attributes for %%CRED_APPLICATION_NAME%%</Description>
+  <RequiredRights>
+  	<Reference class="sailpoint.object.SPRight" name="FullAccessUserReport"/>
+  </RequiredRights>
+  <Parent>
+    <Reference class="sailpoint.object.TaskDefinition" name="CRED Report Template"/>
+  </Parent>
+</TaskDefinition>

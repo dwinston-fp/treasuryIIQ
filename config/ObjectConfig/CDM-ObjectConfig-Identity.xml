@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ObjectConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ObjectConfig name="Identity">
+    <!-- OOTB Identity Attributes -->
+    <ObjectAttribute displayName="att_user_name" name="name" silent="true" system="true" type="string" />
+    <ObjectAttribute displayName="att_detected_roles" groupFactory="true" name="bundles" system="true" type="string" />
+    <ObjectAttribute displayName="att_detected_role_summary" name="bundleSummary" silent="true" system="true" type="string" />
+    <ObjectAttribute displayName="att_assigned_roles" groupFactory="true" name="assignedRoles" system="true" type="string" />
+    <ObjectAttribute displayName="att_assigned_role_summary" name="assignedRoleSummary" silent="true" system="true" type="string" />
+    <ObjectAttribute displayName="att_exceptions" name="exceptions" silent="true" system="true" type="string" />
+    <ObjectAttribute displayName="att_last_refresh" name="lastRefresh" silent="true" system="true" type="string" />
+    <ObjectAttribute displayName="att_last_login" name="lastLogin" silent="true" system="true" type="string" />
+    <ObjectAttribute displayName="att_capabilities" name="capabilities" system="true" type="string" />
+    <ObjectAttribute displayName="att_composite_score" name="scorecard.compositeScore" silent="true" system="true" type="string" />
+    <ObjectAttribute displayName="att_manager" groupFactory="true" name="manager" standard="true" type="sailpoint.object.Identity">
+    	<AttributeSource name="SupervisorTRUID">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="att_email" name="email" standard="true" type="string">
+    	<AttributeSource name="BusinessEmail">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="Sponsorship-BusinessEmail">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="att_first_name" name="firstname" standard="true" type="string">
+    	<AttributeSource name="FirstName">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="Personal-FirstName">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="att_last_name" name="lastname" standard="true" type="string">
+    	<AttributeSource name="LastName">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="Personal-LastName">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="att_inactive" name="inactive" standard="true" type="boolean">
+     	<AttributeSource name="AppRule: Inactive IdentityAttribute Rule - USAccess">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="Inactive IdentityAttribute Rule - USAccess"/>
+            </RuleRef>
+        </AttributeSource>
+         <AttributeSource name="AppRule: Inactive IdentityAttribute Rule - HRConnect">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="Inactive IdentityAttribute Rule - HRConnect"/>
+            </RuleRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Full Name" name="displayName" standard="true" type="string">
+    	<AttributeSource name="GlobalRule: Display Name IdentityAttribute Rule">
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="Display Name IdentityAttribute Rule"/>
+            </RuleRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="att_manager_status" name="managerStatus" system="true" type="boolean" />
+    <ObjectAttribute displayName="att_rights" name="rights" system="true" type="string" />
+    <ObjectAttribute displayName="att_workgroups" name="workgroups" system="true" type="string" />
+
+    <!-- Custom Extended Identity Attributes -->
+    <ObjectAttribute displayName="Unique Identifier" name="uniqueIdentifier" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="AgencyPersonGUID">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="PersonIdentifier-PersonID">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Job Title" name="jobTitle" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="JobcodeTitle">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Department" name="department" editMode="ReadOnly" namedColumn="true" type="string">
+        <AttributeSource name="AppRule: CDM Treasury Department IdentityAttribute Rule">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="CDM Treasury Department IdentityAttribute Rule"/>
+            </RuleRef>
+        </AttributeSource>
+        <AttributeSource name="AppRule: CDM Treasury Department IdentityAttribute Rule">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="CDM Treasury Department IdentityAttribute Rule"/>
+            </RuleRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Component" name="component" editMode="ReadOnly" namedColumn="true" type="string">
+        <AttributeSource name="AppRule: CDM Treasury Component IdentityAttribute Rule">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="CDM Treasury Component IdentityAttribute Rule"/>
+            </RuleRef>
+        </AttributeSource>
+        <AttributeSource name="AppRule: CDM Treasury Component IdentityAttribute Rule">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="CDM Treasury Component IdentityAttribute Rule"/>
+            </RuleRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="City" name="city" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="WorkLocationCity">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="Personal-City">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="State" name="state" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="WorkLocationState">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="Personal-StateCode">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="User Type" name="userType" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="AppRule: CDM Treasury UserType IdentityAttribute Rule">
+      		<ApplicationRef>
+        		<Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+      		</ApplicationRef>
+      		<RuleRef>
+        		<Reference class="sailpoint.object.Rule" name="CDM Treasury UserType IdentityAttribute Rule"/>
+      		</RuleRef>
+    	</AttributeSource>       
+        <AttributeSource name="AppRule: CDM Treasury UserType IdentityAttribute Rule">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="CDM Treasury UserType IdentityAttribute Rule"/>
+            </RuleRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="User Status" name="userStatus" editMode="ReadOnly" namedColumn="true" type="string">
+        <AttributeSource name="AppRule: CDM Treasury UserStatus IdentityAttribute Rule">
+      		<ApplicationRef>
+        		<Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+      		</ApplicationRef>
+      		<RuleRef>
+        		<Reference class="sailpoint.object.Rule" name="CDM Treasury UserStatus IdentityAttribute Rule"/>
+      		</RuleRef>
+    	</AttributeSource>       
+        <AttributeSource name="AppRule: CDM Treasury UserStatus IdentityAttribute Rule">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="CDM Treasury UserStatus IdentityAttribute Rule"/>
+            </RuleRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Middle Name" name="middleName" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="MiddleName">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="Personal-MiddleName">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Physical Office Location" name="physicalOfficeLocation" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="AppRule: CDM Treasury IdentityAttribute Rule Location - HRConnect">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+            <RuleRef>
+                <Reference class="sailpoint.object.Rule" name="CDM Treasury IdentityAttribute Rule Location - HRConnect"/>
+            </RuleRef>
+        </AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="Security Duty IDs" name="securityDutyIds" editMode="ReadOnly" namedColumn="true" type="string"/>
+    <ObjectAttribute displayName="Generation Qualifier" name="nameSuffix" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="Suffix">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+        <AttributeSource name="Personal-Suffix">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+  	<ObjectAttribute displayName="Privileged User" name="privilegedUser" editMode="ReadOnly" namedColumn="true" type="string">
+		<RuleRef>
+      		<Reference class="sailpoint.object.Rule" name="Privileged IdentityAttribute Rule"/>
+    	</RuleRef>
+    	<AttributeSource name="GlobalRule:Privileged IdentityAttribute Rule">
+      		<RuleRef>
+        		<Reference class="sailpoint.object.Rule" name="Privileged IdentityAttribute Rule"/>
+      		</RuleRef>
+    	</AttributeSource>
+	</ObjectAttribute>
+    <ObjectAttribute displayName="Unprivileged User" name="unprivilegedUser" editMode="ReadOnly" namedColumn="true" type="string">
+    	<RuleRef>
+      		<Reference class="sailpoint.object.Rule" name="Unprivileged IdentityAttribute Rule"/>
+    	</RuleRef>
+    	<AttributeSource name="GlobalRule:Unprivileged IdentityAttribute Rule">
+      		<RuleRef>
+        		<Reference class="sailpoint.object.Rule" name="Unprivileged IdentityAttribute Rule"/>
+      		</RuleRef>
+    	</AttributeSource>
+    </ObjectAttribute>
+    <ObjectAttribute displayName="User Status Initiation Date" name="userStatusInitiationDate" editMode="ReadOnly" namedColumn="true" type="string"/>
+    <ObjectAttribute displayName="User Review Date" name="userReviewDate" editMode="ReadOnly" namedColumn="true" type="string"/>
+    <ObjectAttribute displayName="User Review Grace Period" name="userReviewGracePeriod" editMode="ReadOnly" namedColumn="true" type="string"/>
+	<ObjectAttribute displayName="PersonID" name="personID" editMode="ReadOnly" namedColumn="true" type="string">
+    	<AttributeSource name="PersonID">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%HR_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    	<AttributeSource name="PersonIdentifier-PersonID">
+            <ApplicationRef>
+                <Reference class="sailpoint.object.Application" name="%%CRED_APPLICATION_NAME%%"/>
+            </ApplicationRef>
+        </AttributeSource>
+    </ObjectAttribute>
+</ObjectConfig>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="CDM-Rule-RenderRule-TrustStatus">
+  <Source>
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import gov.treasury.cdm.constants.TreasuryCustomGlobalStringConst;
+import sailpoint.object.Custom;
+import sailpoint.tools.Util;
+Log log = LogFactory.getLog("rule.RenderRule-TrustStatus");
+log.trace("Entering trust status render rule");
+ArrayList trustStatusList = new ArrayList();
+String trustStatus = null;
+if (value != null) {
+  log.debug("trustStatus is: " + value);
+  try {
+    Custom globalConsts =
+        context.getObjectByName(Custom.class,
+            TreasuryCustomGlobalStringConst.CUSTOM_GLOBAL_OBJECT_NAME);
+    if (globalConsts != null) {
+      Map statusMap =
+          (Map) globalConsts.get(TreasuryCustomGlobalStringConst.TRUST_STATUS_MAPPING_KEY);
+      if (statusMap != null) {
+        if (value instanceof List) {
+          List&lt;String> valueList = (List) value;
+          for (String valueString : valueList) {
+            if (statusMap.get(valueString) != null) {
+              trustStatusList.add((String) statusMap.get(valueString));
+            } else {
+              log.trace("value " + valueString + " not mapped to trust status");
+            }
+          }
+          trustStatus = trustStatusList.toString();
+          trustStatus = trustStatus.replace("[", "");
+          trustStatus = trustStatus.replace("]", "");
+        }
+      } else {
+        log.warn("trust status map is null");
+      }
+    } else {
+      log.warn("Unable to retrieve custom global object");
+    }
+  } catch (Exception e) {
+    log.error(" An exception occured in mapping the credstatus " + value);
+  }
+} else {
+  log.warn("trust status is null.");
+}
+log.trace("Exiting trust status render rule - Returning: " + trustStatus);
+return trustStatus;</Source>
+</Rule>
